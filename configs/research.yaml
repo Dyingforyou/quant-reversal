@@ -1,0 +1,3 @@
+include: default.yaml
+project: {timezone: Asia/Shanghai, output_dir: data/outputs, data_dir: data/fixtures}
+

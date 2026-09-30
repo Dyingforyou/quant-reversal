@@ -1,0 +1,16 @@
+project: {timezone: Asia/Shanghai, output_dir: data/outputs, data_dir: data/fixtures}
+candidate: {research_min_board: 2, research_max_board: 10, require_first_break: true, signal_delay_days: 1, exclude_suspended: true, hard_filter_ma5: false, hard_filter_auction: false}
+limitup: {price_tolerance: 0.001}
+ma5: {lookback: 5, min_distance: -0.02, max_distance: 0.03, reference: previous_close_ma}
+auction: {lookback: 20, baseline: median, volume_ratio_min: 1.5, amount_ratio_min: 1.5, gap_min: -0.06, gap_max: 0.03}
+intraday: {confirm_window_minutes: 30, max_entry_time: '10:00', require_reclaim_prev_close: false, require_reclaim_ma5: true, open5m_volume_ratio_min: 1.2, max_rebreak_ma5_count: 1}
+sector: {type_priority: [concept, industry], min_members: 3, lookback_days: 20}
+score: {sector_weight: 20, stock_weight: 20, break_weight: 15, ma5_weight: 15, auction_weight: 20, market_weight: 10, grade_a: 80, grade_b: 70, watch: 60}
+models:
+  low_height: {board_range: [2, 3], sector_weight: 15, stock_weight: 10, break_weight: 15, ma5_weight: 15, auction_weight: 20, height_rank_weight: 5, turnover_weight: 10, sentiment_weight: 10}
+  mid_height: {board_range: [4, 5], sector_weight: 12, stock_weight: 8, break_weight: 15, ma5_weight: 8, auction_weight: 20, height_rank_weight: 10, turnover_weight: 12, sentiment_weight: 15}
+  high_leader: {min_board: 6, sector_weight: 8, stock_weight: 5, break_weight: 12, ma5_weight: 2, auction_weight: 20, height_rank_weight: 18, turnover_weight: 15, sentiment_weight: 20}
+entry: {mode: intraday_confirmed, slippage_bps: 10}
+exit: {base_mode: next_day_1000, fixed_stop_pct: -0.05, take_profit_pct: 0.08, max_holding_days: 3}
+costs: {commission_bps: 3, min_commission: 5.0, sell_tax_bps: 10}
+backtest: {initial_cash: 1000000, max_positions: 5, position_size_pct: 0.20, reject_same_bar_fill: true, enforce_t1: true, lot_size: 100}

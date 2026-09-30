@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+data/normalized/
+data/outputs/
+data/fixtures/
+*.egg-info/
+*.py[cod]
+*.tsbuildinfo
+*.log
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.venv/
+frontend/node_modules/
+frontend/dist/

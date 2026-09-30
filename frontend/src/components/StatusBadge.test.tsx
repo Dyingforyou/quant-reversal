@@ -1,0 +1,2 @@
+import '@testing-library/jest-dom/vitest';import {render,screen} from '@testing-library/react';import {describe,expect,it} from 'vitest';import {StatusBadge} from './StatusBadge';
+describe('StatusBadge',()=>{it.each([['PASS','通过'],['FAIL','失败'],['NOT_RUN','未执行'],['NO_DATA','无数据'],['ERROR','异常']])('renders %s distinctly',(status,label)=>{render(<StatusBadge status={status}/>);expect(screen.getByText(label)).toHaveClass(`status-${status.toLowerCase().replaceAll('_','-')}`)})});
